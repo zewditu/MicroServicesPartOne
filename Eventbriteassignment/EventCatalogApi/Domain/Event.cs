@@ -13,12 +13,13 @@ namespace EventCatalogApi.Domain
 
         public string PictureURL { get; set; }
 
-        public decimal TickectPrice { get; set; }
+        public string TicketId { get; set; }
         public string AgeLimit { get; set; }
         public string EventPlaceId { get; set; }
 
         // Navigational property 
-        public virtual Place place { get; set; }    
+        public virtual Place place { get; set; }
+        public  virtual  Ticket Ticket { get; set; }
 
     }
 }
