@@ -4,14 +4,12 @@ using System.Data;
 
 namespace EventCatalogApi.Data
 {
-    
     public class EventCatalogContext : DbContext
     {
         public EventCatalogContext(DbContextOptions options):base(options)
         {
 
         }
-        //what
         public DbSet<Place> EventPlace { get; set; }
         public DbSet<Event> EventCatalogTable { get; set; }
 
@@ -55,5 +53,4 @@ namespace EventCatalogApi.Data
         }
 
     }
-    
 }

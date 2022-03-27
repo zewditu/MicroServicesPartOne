@@ -11,7 +11,6 @@ namespace EventCatalogApi.Data
         public static void Seed(EventCatalogContext context)
         {
             context.Database.Migrate();
-           
             if(!context.EventPlace.AnyAsync().Result)
             {
                 context.EventPlace.AddRange(GetEventPlaces());
@@ -22,7 +21,7 @@ namespace EventCatalogApi.Data
                 context.EventCatalogTable.AddRange(GetEventCatalog());
                 context.SaveChanges();
             }
-           
+
 
         }
 
