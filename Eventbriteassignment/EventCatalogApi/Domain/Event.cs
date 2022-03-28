@@ -23,6 +23,6 @@ namespace EventCatalogApi.Domain
 
         // Navigational property 
         public virtual Place Place { get; set; }
-        public virtual PossibleEventCategory Category { get; set; }
+        public virtual EventCategory Category { get; set; }
     }
 }

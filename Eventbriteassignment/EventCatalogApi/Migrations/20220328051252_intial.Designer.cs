@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventCatalogApi.Migrations
 {
     [DbContext(typeof(EventCatalogContext))]
-    [Migration("20220327005437_IntilaMigration")]
-    partial class IntilaMigration
+    [Migration("20220328051252_intial")]
+    partial class intial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,12 +23,13 @@ namespace EventCatalogApi.Migrations
 
             modelBuilder.Entity("EventCatalogApi.Domain.Event", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AgeLimit")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AgeLimit")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -37,8 +38,11 @@ namespace EventCatalogApi.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<string>("EventPlaceId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("EventCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EventPlaceId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -53,16 +57,34 @@ namespace EventCatalogApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EventCategoryId");
+
                     b.HasIndex("EventPlaceId");
 
-                    b.ToTable("Catalog");
+                    b.ToTable("EventCatalogTable");
+                });
+
+            modelBuilder.Entity("EventCatalogApi.Domain.EventCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoryName")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EventCategory");
                 });
 
             modelBuilder.Entity("EventCatalogApi.Domain.Place", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Aderess")
                         .IsRequired()
@@ -76,16 +98,26 @@ namespace EventCatalogApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CatalogTypes");
+                    b.ToTable("EventPlace");
                 });
 
             modelBuilder.Entity("EventCatalogApi.Domain.Event", b =>
                 {
-                    b.HasOne("EventCatalogApi.Domain.Place", "place")
+                    b.HasOne("EventCatalogApi.Domain.EventCategory", "Category")
                         .WithMany()
-                        .HasForeignKey("EventPlaceId");
+                        .HasForeignKey("EventCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("place");
+                    b.HasOne("EventCatalogApi.Domain.Place", "Place")
+                        .WithMany()
+                        .HasForeignKey("EventPlaceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Place");
                 });
 #pragma warning restore 612, 618
         }

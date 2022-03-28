@@ -14,6 +14,7 @@ namespace EventCatalogApi.Data
         //what
         public DbSet<Place> EventPlace { get; set; }
         public DbSet<Event> EventCatalogTable { get; set; }
+        public DbSet<EventCategory> EventCategory { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -32,25 +33,36 @@ namespace EventCatalogApi.Data
                     .HasMaxLength(100);
             });
 
+            modelBuilder.Entity<EventCategory>(c =>
+            {
+                c.Property(p => p.Id)
+                    .IsRequired()
+                    .ValueGeneratedOnAdd();
+            });
+
             modelBuilder.Entity<Event>(e =>
             {
-                e.Property(e => e.Id)
+                e.Property(p => p.Id)
                     .IsRequired()
                     .ValueGeneratedOnAdd();
 
-                e.Property(e => e.Name)
+                e.Property(p => p.Name)
                     .IsRequired()
                     .HasMaxLength(100);
 
-                e.Property(e => e.Desciprion)
+                e.Property(p => p.Desciprion)
                     .HasMaxLength(300);
-                e.Property(e => e.Ticketprice)
+                e.Property(p => p.Ticketprice)
                     .IsRequired();
                 // Assume event has one place but a place has many events.
                 // But there might be many to many relationship.
-                e.HasOne(e => e.place)
+                e.HasOne(p => p.Place)
                     .WithMany()
                     .HasForeignKey(e => e.EventPlaceId);
+
+                e.HasOne(p => p.Category)
+                    .WithMany()
+                    .HasForeignKey(p => p.EventCategoryId);
             });
         }
 

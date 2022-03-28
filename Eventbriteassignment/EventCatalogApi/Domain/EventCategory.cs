@@ -16,6 +16,6 @@ namespace EventCatalogApi.Domain
     public class EventCategory
     {
         public int Id { get; set; }
-        public PossibleEventCategory Category { get; set; }
+        public PossibleEventCategory CategoryName { get; set; }
     }
 }
