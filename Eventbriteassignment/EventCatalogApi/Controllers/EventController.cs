@@ -72,7 +72,7 @@ namespace EventCatalogApi.Controllers
             var query = (IQueryable<Event>)_context.EventCatalogTable;
             if (eventTypeId.HasValue)
             {
-                query = query.Where(c => c.EventTypeId == eventTypeId);
+                query = query.Where(c => c.EventCategoryId == eventTypeId);
             }
             if (eventPlaceId.HasValue)
             {
