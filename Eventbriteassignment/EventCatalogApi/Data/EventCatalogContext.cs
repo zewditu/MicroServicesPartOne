@@ -14,8 +14,10 @@ namespace EventCatalogApi.Data
         //what
         public DbSet<Place> Places { get; set; }
         public DbSet<Event> EventCatalogTable { get; set; }
-        public DbSet<Event> Categories { get; set; }
+        public DbSet<EventCategory> Categories { get; set; }
         public object Catalog { get; internal set; }
+        //public DbSet<EventCategory> EventCategory { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,13 +36,20 @@ namespace EventCatalogApi.Data
                     .HasMaxLength(100);
             });
 
+            modelBuilder.Entity<EventCategory>(c =>
+            {
+                c.Property(p => p.Id)
+                    .IsRequired()
+                    .ValueGeneratedOnAdd();
+            });
+
             modelBuilder.Entity<Event>(e =>
             {
-                e.Property(e => e.Id)
+                e.Property(p => p.Id)
                     .IsRequired()
                     .ValueGeneratedOnAdd();
 
-                e.Property(e => e.Name)
+                e.Property(p => p.Name)
                     .IsRequired()
                     .HasMaxLength(100);
 
@@ -56,9 +65,9 @@ namespace EventCatalogApi.Data
                     .WithMany()
                     .HasForeignKey(e => e.EventPlaceId);
 
-                //e.HasOne(e => e.Category)
-                //   .WithMany()
-                //   .HasForeignKey(e => e.EventCategoryId);
+                e.HasOne(e => e.Category)
+                   .WithMany()
+                   .HasForeignKey(e => e.EventCategoryId);
             });
         }
 

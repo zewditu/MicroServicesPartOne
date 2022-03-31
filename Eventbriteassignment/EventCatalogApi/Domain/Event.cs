@@ -18,10 +18,11 @@ namespace EventCatalogApi.Domain
         public Decimal Ticketprice { get; set; }
         public int AgeLimit { get; set; }
         public int EventPlaceId { get; set; }
+        public int EventCategoryId { get; set; }
+
 
         // Navigational property 
         public virtual Place Place { get; set; }
-      
-
+        public virtual EventCategory Category { get; set; }
     }
 }

@@ -30,7 +30,7 @@ namespace EventCatalogApi
         {
 
             services.AddControllers();
-            services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
+            services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(Configuration["ConnectionStringEvents"]));
 
             services.AddSwaggerGen(c =>
             {
