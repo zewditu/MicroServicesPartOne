@@ -11,7 +11,7 @@ namespace EventCatalogApi.Domain
         public string Name { get; set; }    
         public DateTime Date { get; set; }
 
-        public string Desciprion { get; set; }
+        public string Description { get; set; }
 
         public string PictureURL { get; set; }
 
@@ -20,7 +20,7 @@ namespace EventCatalogApi.Domain
         public int EventPlaceId { get; set; }
 
         // Navigational property 
-        public virtual Place place { get; set; }
+        public virtual Place Place { get; set; }
       
 
     }
