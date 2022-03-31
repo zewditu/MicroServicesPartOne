@@ -27,14 +27,14 @@ namespace EventCatalogApi.Controllers
         [HttpGet("[action]")]
         public async Task<IActionResult> EventPlaces()
         {
-            var places = await _context.Places.ToListAsync();
+            var places = await _context.EventPlaces.ToListAsync();
             return Ok(places);
         }
 
         [HttpGet("[action]")]
         public async Task<IActionResult> EventCategories()
         {
-            var categories = await _context.Categories.ToListAsync();
+            var categories = await _context.EventCategories.ToListAsync();
             return Ok(categories);
         }
 
@@ -71,9 +71,9 @@ namespace EventCatalogApi.Controllers
         {
             var query = (IQueryable<Event>)_context.EventCatalogTable;
             if (eventTypeId.HasValue)
-            //{
-            //    query = query.Where(c => c.EventTypeId == eventTypeId);
-            //}
+            {
+                query = query.Where(c => c.EventTypeId == eventTypeId);
+            }
             if (eventPlaceId.HasValue)
             {
                 query = query.Where(c => c.EventPlaceId== eventPlaceId);

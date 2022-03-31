@@ -12,12 +12,10 @@ namespace EventCatalogApi.Data
 
         }
         //what
-        public DbSet<Place> Places { get; set; }
+        public DbSet<Place> EventPlaces { get; set; }
         public DbSet<Event> EventCatalogTable { get; set; }
-        public DbSet<EventCategory> Categories { get; set; }
-        public object Catalog { get; internal set; }
-        //public DbSet<EventCategory> EventCategory { get; set; }
-
+        public DbSet<EventCategory> EventCategories { get; set; }
+        //public object Catalog { get; internal set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

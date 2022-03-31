@@ -12,14 +12,14 @@ namespace EventCatalogApi.Data
         {
             context.Database.Migrate();
            
-            if(!context.EventPlace.AnyAsync().Result)
+            if(!context.EventPlaces.AnyAsync().Result)
             {
-                context.EventPlace.AddRange(GetEventPlaces());
+                context.EventPlaces.AddRange(GetEventPlaces());
                 context.SaveChanges();
             }
-            if (!context.EventCategory.AnyAsync().Result)
+            if (!context.EventCategories.AnyAsync().Result)
             {
-                context.EventCategory.AddRange(GetEventCategory());
+                context.EventCategories.AddRange(GetEventCategory());
                 context.SaveChanges();
             }
 
@@ -46,25 +46,25 @@ namespace EventCatalogApi.Data
             {
                 new Event{Name="15th Annual Washington Brewers Festival",
                 Date= new DateTime(2022, 4, 16, 3,0,0),
-                Desciprion="Nice to go there", PictureURL="http://externalcatalogbaseurltobereplaced/api/pic/1",
+                Description="Nice to go there", PictureURL="http://externalcatalogbaseurltobereplaced/api/pic/1",
                 Ticketprice=30,AgeLimit=10,EventPlaceId=1,
                 EventCategoryId=1,
                 },
                 new Event{Name="Second event",
                  Date= new DateTime(2022, 4, 22, 3,0,0),
-                Desciprion="Nice to go there", PictureURL="http://externalcatalogbaseurltobereplaced/api/pic/2",
+                Description="Nice to go there", PictureURL="http://externalcatalogbaseurltobereplaced/api/pic/2",
                 Ticketprice=30,AgeLimit=10,EventPlaceId=2,
                 EventCategoryId= 2
                 },
                 new Event{Name="third event ",
                  Date= new DateTime(2022, 5, 10, 4,0,0),
-                Desciprion="Nice to go there", PictureURL="http://externalcatalogbaseurltobereplaced/api/pic/3",
+                Description="Nice to go there", PictureURL="http://externalcatalogbaseurltobereplaced/api/pic/3",
                 Ticketprice=20,AgeLimit=18,EventPlaceId=1,
                 EventCategoryId = 3,
                 },
                 new Event{Name="third event ",
                  Date= new DateTime(2022, 4, 10, 4,0,0),
-                Desciprion="Nice to go there", PictureURL="http://externalcatalogbaseurltobereplaced/api/pic/4",
+                Description="Nice to go there", PictureURL="http://externalcatalogbaseurltobereplaced/api/pic/4",
                 Ticketprice=20,AgeLimit=18,
                     EventPlaceId=3,
                 EventCategoryId=1
@@ -77,9 +77,9 @@ namespace EventCatalogApi.Data
         {
             return new List<Place>
             {
-                new Place{Name="Seattle",Aderess="Magnuson Park Hangar " },
-                new Place{Name="Redmond",Aderess="King County's Marymoor Park " },
-                new Place{Name="Kirkland",Aderess="Lake Union Charters" },
+                new Place{Name="Seattle",Address="Magnuson Park Hangar " },
+                new Place{Name="Redmond",Address="King County's Marymoor Park " },
+                new Place{Name="Kirkland",Address="Lake Union Charters" },
             };
         }
     }
