@@ -11,7 +11,7 @@ namespace EventCatalogApi.Domain
         public string Name { get; set; }    
         public DateTime Date { get; set; }
 
-        public string Description { get; set; }
+        public string Desciprion { get; set; }
 
         public string PictureURL { get; set; }
 

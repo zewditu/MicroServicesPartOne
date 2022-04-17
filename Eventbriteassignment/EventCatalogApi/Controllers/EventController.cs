@@ -27,14 +27,14 @@ namespace EventCatalogApi.Controllers
         [HttpGet("[action]")]
         public async Task<IActionResult> EventPlaces()
         {
-            var places = await _context.EventPlaces.ToListAsync();
+            var places = await _context.EventPlace.ToListAsync();
             return Ok(places);
         }
 
         [HttpGet("[action]")]
         public async Task<IActionResult> EventCategories()
         {
-            var categories = await _context.EventCategories.ToListAsync();
+            var categories = await _context.EventCategory.ToListAsync();
             return Ok(categories);
         }
 

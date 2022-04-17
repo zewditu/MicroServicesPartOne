@@ -12,9 +12,9 @@ namespace EventCatalogApi.Data
 
         }
         //what
-        public DbSet<Place> EventPlaces { get; set; }
+        public DbSet<Place> EventPlace { get; set; }
         public DbSet<Event> EventCatalogTable { get; set; }
-        public DbSet<EventCategory> EventCategories { get; set; }
+        public DbSet<EventCategory> EventCategory { get; set; }
         //public object Catalog { get; internal set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -51,7 +51,7 @@ namespace EventCatalogApi.Data
                     .IsRequired()
                     .HasMaxLength(100);
 
-                e.Property(e => e.Description)
+                e.Property(e => e.Desciprion)
                     .HasMaxLength(300);
 
                 e.Property(e => e.Ticketprice)

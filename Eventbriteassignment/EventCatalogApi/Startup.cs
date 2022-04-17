@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -30,7 +31,9 @@ namespace EventCatalogApi
         {
 
             services.AddControllers();
-            services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(Configuration["ConnectionStringEvents"]));
+
+            var connectionStr = Configuration["ConnectionStringEvents"];
+            services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(connectionStr));
 
             services.AddSwaggerGen(c =>
             {
