@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EventCatalogApi.Data
 {
@@ -12,18 +13,18 @@ namespace EventCatalogApi.Data
         {
             context.Database.Migrate();
            
-            if(!context.EventPlace.AnyAsync().Result)
-            {
-                context.EventPlace.AddRange(GetEventPlaces());
+        if(!context.EventPlace.Any())
+           {
+               context.EventPlace.AddRange(GetEventPlaces());
                 context.SaveChanges();
             }
-            if (!context.EventCategory.AnyAsync().Result)
+            if (!context.EventCategory.Any())
             {
                 context.EventCategory.AddRange(GetEventCategory());
                 context.SaveChanges();
             }
 
-            if (!context.EventCatalogTable.AnyAsync().Result)
+            if (!context.EventCatalogTable.Any())
             {
                 context.EventCatalogTable.AddRange(GetEventCatalog());
                 context.SaveChanges();
@@ -34,9 +35,9 @@ namespace EventCatalogApi.Data
         {
             return new List<EventCategory>
             {
-                new EventCategory{CategoryName=PossibleEventCategory.Music},
-                new EventCategory{CategoryName=PossibleEventCategory.TravelAndOutdoor},
-                new EventCategory{CategoryName=PossibleEventCategory.Community}
+                new EventCategory{CategoryName="Music"},
+                new EventCategory{CategoryName="TravelAndOutdoor"},
+                new EventCategory{CategoryName="Community"}
             };
         }
 
@@ -77,9 +78,9 @@ namespace EventCatalogApi.Data
         {
             return new List<Place>
             {
-                new Place{Name="Seattle",Aderess="Magnuson Park Hangar " },
-                new Place{Name="Redmond",Aderess="King County's Marymoor Park " },
-                new Place{Name="Kirkland",Aderess="Lake Union Charters" },
+                new Place{Name="Seattle",Address="Magnuson Park Hangar " },
+                new Place{Name="Redmond",Address="King County's Marymoor Park " },
+                new Place{Name="Kirkland",Address="Lake Union Charters" },
             };
         }
     }
