@@ -32,8 +32,14 @@ namespace EventCatalogApi
 
             services.AddControllers();
 
-            var connectionStr = Configuration["ConnectionStringEvents"];
-            services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(connectionStr));
+           // var connectionStr = Configuration["ConnectionStringEvents"];
+
+            var dbServer = Configuration["DatabaseServer"];
+            var dbName = Configuration["DatabaseName"];
+            var dbUser = Configuration["DatabaseUser"];
+            var dbPassword = Configuration["DatabasePassword"];
+            var connectionString = $"Data Source={dbServer};Initial Catalog={dbName};User Id={dbUser};Password={dbPassword};Connect Timeout=30;";
+            services.AddDbContext<EventCatalogContext>(options => options.UseSqlServer(connectionString));
 
             services.AddSwaggerGen(c =>
             {
