@@ -7,33 +7,49 @@ networks:
 services:
 
    mssqlserver:
-    image: "mcr.microsoft.com/mssql/server:latest"
-    environment:
-      ACCEPT_EULA: Y
-      SA_PASSWORD: EventCatalogApi(!)
-    ports:
-      - "1448:1433"
-    container_name: eventssqlserver
-    networks:
-      - backend
+     image: "mcr.microsoft.com/mssql/server:latest"
+     environment:
+       ACCEPT_EULA: Y
+       SA_PASSWORD: EventCatalogApi(!)
+     ports:
+       - "1448:1433"
+     container_name: eventssqlserver
+     networks:
+       - backend
 
    eventcatalogapi:
-    image: eventbrite/eventcatalogapi
-    build:
-      context: .\EventCatalogApi
-      dockerfile: Dockerfile
-    environment:
-      Externalbaseurl: http://localhost:7000
-      DatabaseServer: mssqlserver
-      DatabaseName: CatalogDb
-      DatabaseUser: sa
-      DatabasePassword: EventCatalogApi(!)
-    ports:
-      - "7000:80"
-    container_name: eventcatalogapi
-    networks:
-      - frontend
-      - backend
-    depends_on:
-      - mssqlserver
+     image: eventbrite/eventcatalogapi
+     build:
+       context: .\EventCatalogApi
+       dockerfile: Dockerfile
+     environment:
+       Externalbaseurl: http://localhost:7100
+       DatabaseServer: mssqlserver
+       DatabaseName: EventManageDbTwo
+       DatabaseUser: sa
+       DatabasePassword: EventCatalogApi(!)
+     ports:
+       - "7100:80"
+     container_name: eventcatalogapi
+     networks:
+       - frontend
+       - backend
+     depends_on:
+       - mssqlserver
 
+   webmvc: 
+     image: events/webmvc
+     build:
+       context: .\WebMvc
+       dockerfile: Dockerfile
+     environment:
+       EventCatalogUrl: http://eventcatalogapi
+       CallbackUrl: http://localhost:8000
+     ports:
+       - "8000:80"
+     container_name: eventbrite
+     networks:
+       - frontend
+     depends_on:
+       - eventcatalogapi
+      
