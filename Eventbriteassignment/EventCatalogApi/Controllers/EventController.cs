@@ -55,7 +55,7 @@ namespace EventCatalogApi.Controllers
             {
                 PageIndex = pageIndex,
                 PageSize = items.Count,
-                Count = itemsCount.Result,
+                Count =  itemsCount.Result,
                 Data = items
             };
             return Ok(model);
@@ -63,7 +63,7 @@ namespace EventCatalogApi.Controllers
 
 
         [HttpGet("[action]/filter")]
-        public async Task<IActionResult> Items(
+        public async Task<IActionResult> Events(
             [FromQuery] int? eventTypeId,
             [FromQuery] int? eventPlaceId,
             [FromQuery] int pageIndex = 0,

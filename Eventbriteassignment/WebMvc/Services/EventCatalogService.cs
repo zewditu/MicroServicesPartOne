@@ -72,6 +72,8 @@ namespace WebMvc.Services
         public async Task<EventCatalog> GetEventCatalogItemsAsync(int pageNumber, int pageSize, int? category, int? place)
         {
             var catalogItemsUri = ApiPaths.Events.GetAllEvents(_baseUrl, pageNumber, pageSize, category, place);
+            //  http://eventcatalogapi/api/event/items?pageindex=0&pagesize=10
+
             var dataString = await _client.GetAsync(catalogItemsUri);
             return JsonConvert.DeserializeObject<EventCatalog>(dataString);
         }

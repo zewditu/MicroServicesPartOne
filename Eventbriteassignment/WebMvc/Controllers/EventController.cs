@@ -17,6 +17,7 @@ namespace WebMvc.Controllers
             var events = await _service.GetEventCatalogItemsAsync(pageNumber ?? 0, itemsOnPage,
                 catalogFilter, placeFilter);
 
+
             var vm = new EventIndexViewModel
             {
                 Categories = await _service.GetCategoriesAsync(),
@@ -34,11 +35,6 @@ namespace WebMvc.Controllers
             };
 
             return View(vm);
-        }
-
-        public IActionResult About()
-        {
-            return View();
         }
     }
 }

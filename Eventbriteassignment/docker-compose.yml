@@ -23,13 +23,13 @@ services:
        context: .\EventCatalogApi
        dockerfile: Dockerfile
      environment:
-       Externalbaseurl: http://localhost:7000
+       Externalbaseurl: http://localhost:7100
        DatabaseServer: mssqlserver
-       DatabaseName: CatalogDb
+       DatabaseName: EventManageDbTwo
        DatabaseUser: sa
        DatabasePassword: EventCatalogApi(!)
      ports:
-       - "7000:80"
+       - "7100:80"
      container_name: eventcatalogapi
      networks:
        - frontend
@@ -43,9 +43,10 @@ services:
        context: .\WebMvc
        dockerfile: Dockerfile
      environment:
-       EventUrl: http://eventcatalogapi
+       EventCatalogUrl: http://eventcatalogapi
+       CallbackUrl: http://localhost:8000
      ports:
-       - "7500:80"
+       - "8000:80"
      container_name: eventbrite
      networks:
        - frontend

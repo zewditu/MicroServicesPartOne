@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using WebMvc.Models;
-using WebMvc.ViewModels;
 
-namespace WebMvc.Controllers
+namespace WebMvc.ViewModels
 {
     public class EventIndexViewModel
     {

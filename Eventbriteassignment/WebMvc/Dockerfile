@@ -8,7 +8,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY . .
-RUN dotnet restore "WebMvc/WebMvc.csproj"
+RUN dotnet restore "WebMvc.csproj"
 
 RUN dotnet build "WebMvc.csproj" -c Release -o /app/build
 
