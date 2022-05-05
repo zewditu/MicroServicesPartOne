@@ -1,9 +1,9 @@
 ﻿@model WebMvc.Models.EventCatalogItem
 
 
-<form asp-controller="Cart" asp-action="AddToCart">
+<form asp-controller="Ticket" asp-action="BuyTicket">
     <img class="esh-catalog-thumbnail" src="@Model.PictureURL" />
-    <input class="esh-catalog-button" type="submit" value="[ ADD TO CART ]" />
+    <input class="esh-catalog-button" type="submit" value="Buy Tickets" />
     <div class="esh-catalog-name">
         <span>@Model.Name</span>
     </div>

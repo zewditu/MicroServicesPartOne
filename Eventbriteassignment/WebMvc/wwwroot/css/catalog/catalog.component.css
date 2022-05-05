@@ -11,11 +11,11 @@
 }
 
 .esh-catalog-filters {
-    background-color: #00A69C;
+    background-color: white;
     height: 65px;
 }
 
-.esh-catalog-filter {
+/*.esh-catalog-filter {
     background-color: transparent;
     border-color: #00d9cc;
     color: #FFFFFF;
@@ -33,9 +33,9 @@
 
     .esh-catalog-filter option {
         background-color: #00A69C;
-    }
+    }*/
 
-.esh-catalog-label {
+/*.esh-catalog-label {
     display: inline-block;
     position: relative;
     z-index: 0;
@@ -76,11 +76,11 @@
     .esh-catalog-send:hover {
         background-color: #4a760f;
         transition: all 0.35s;
-    }
+    }*/
 
-.esh-catalog-items {
+/*.esh-catalog-items {
     margin-top: 1rem;
-}
+}*/
 
 .esh-catalog-item {
     text-align: center;
@@ -102,7 +102,7 @@
     }
 }
 
-.esh-catalog-thumbnail {
+/*.esh-catalog-thumbnail {
     max-width: 370px;
     width: 100%;
 }
@@ -144,4 +144,4 @@
 
     .esh-catalog-price::before {
         content: '$';
-    }
+    }*/
