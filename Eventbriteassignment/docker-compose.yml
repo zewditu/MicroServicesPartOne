@@ -45,6 +45,8 @@ services:
      environment:
        EventCatalogUrl: http://eventcatalogapi
        CallbackUrl: http://localhost:8000
+       StripePublicKey: pk_test_PZScD6MMQk4mR7MEx65yXuxQ00n6AeQWBi
+       StripePrivateKey: sk_test_J8H9AKCSKT3IyaRTFgLpL6X200LU34kY3l
      ports:
        - "8000:80"
      container_name: eventbrite

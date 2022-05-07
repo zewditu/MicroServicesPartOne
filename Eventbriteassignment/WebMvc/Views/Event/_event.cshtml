@@ -3,7 +3,14 @@
 
 <form asp-controller="Ticket" asp-action="BuyTicket">
     <img class="esh-catalog-thumbnail" src="@Model.PictureURL" />
-    <input class="esh-catalog-button" type="submit" value="Buy Tickets" />
+    <button class="esh-catalog-button" type="submit" value="Buy Tickets" />
+
+     <a asp-area="" asp-controller="Ticket" asp-action="Index">
+                            <input class="esh-catalog-button" type="submit" value="Buy Tickets" />
+                        </a>
+                      
+                   @*     <a asp-page="./EditReport" asp-route-id="@report.IntegrityReportId" class="btn btn-default"><i class="fa fa-edit"></i></a>*@
+
     <div class="esh-catalog-name">
         <span>@Model.Name</span>
     </div>
