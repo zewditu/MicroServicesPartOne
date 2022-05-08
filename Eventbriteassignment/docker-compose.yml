@@ -37,12 +37,61 @@ services:
      depends_on:
        - mssqlserver
 
+   ticketorderapi:
+     image: eventbrite/ticketorderapi
+     build:
+       context: .\TicketOrderApi
+       dockerfile: Dockerfile
+     environment:
+       ASPNETCORE_ENVIRONMENT: Development
+       #IdentityUrl: http://192.168.1.102:7800
+       DatabaseServer: mssqlserver
+       DatabaseName: EventManageDbTwo
+       DatabaseUser: sa
+       DatabasePassword: EventCatalogApi(!)
+     logging: 
+       driver: "json-file"
+       options: {
+          max-size: "200k",
+          max-file: "10"
+      }
+     ports:
+       - "7200:80"
+     container_name: ticketorderapi
+     networks:
+       - frontend
+       - backend
+     depends_on:
+       #- tokenserver
+       - mssqlserver
+       - rabbitmq
+
+   rabbitmq:
+     image: rabbitmq:3-management
+     container_name: rabbitmq
+     hostname: myrabbitmq
+     ports:
+       - "15672:15672"
+       - "5672:5672"
+       - "5671:5671"
+     volumes:
+       - ~/rabbitmq:/var/lib/rabbitmq/mnesia   
+     networks:
+       - backend 
+
    webmvc: 
      image: events/webmvc
      build:
        context: .\WebMvc
        dockerfile: Dockerfile
+     logging: 
+       driver: "json-file"
+       options: {
+          max-size: "200k",
+          max-file: "10"
+      }
      environment:
+       TicketOrderUrl: http://ticketorderapi
        EventCatalogUrl: http://eventcatalogapi
        CallbackUrl: http://localhost:8000
        StripePublicKey: pk_test_PZScD6MMQk4mR7MEx65yXuxQ00n6AeQWBi

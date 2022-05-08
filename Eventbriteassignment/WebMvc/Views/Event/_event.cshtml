@@ -1,29 +1,31 @@
 ﻿@model WebMvc.Models.EventCatalogItem
 
-
-<form asp-controller="Ticket" asp-action="BuyTicket">
+@*<div>
     <img class="esh-catalog-thumbnail" src="@Model.PictureURL" />
-    <button class="esh-catalog-button" type="submit" value="Buy Tickets" />
-
-     <a asp-area="" asp-controller="Ticket" asp-action="Index">
-                            <input class="esh-catalog-button" type="submit" value="Buy Tickets" />
-                        </a>
-                      
-                   @*     <a asp-page="./EditReport" asp-route-id="@report.IntegrityReportId" class="btn btn-default"><i class="fa fa-edit"></i></a>*@
-
+    <a asp-action="Index" asp-controller="TicketOrder" class="btn btn-primary">Buy tickets</a>
+    </div>*@
+<form asp-controller="TicketOrder" asp-action="Create" >
+     <img class="esh-catalog-thumbnail" src="@Model.PictureURL" />
     <div class="esh-catalog-name">
         <span>@Model.Name</span>
     </div>
     <div class="esh-catalog-price">
-        <span>@Model.Ticketprice.ToString("N2")</span>
+        <span>@Model.TicketPrice.ToString("N2")</span>
     </div>
-    <input type="hidden" asp-for="@Model.Category" name="brand" />
-    <input type="hidden" asp-for="@Model.EventCategoryId" name="brandId" />
-    <input type="hidden" asp-for="@Model.Place" name="type" />
-    <input type="hidden" asp-for="@Model.EventPlaceId" name="typeId" />
-    <input type="hidden" asp-for="@Model.Desciprion" name="description" />
+     <div class="form-group grid-flex flex-row">
+                        <label  class="">Quantity</label>
+                        <input asp-for="@Model.TicketQuantity" class="form-control form-input" type="text" name="ticketQuantity" />
+                    </div>
+    <input class="esh-catalog-button" type="submit" value="Buy Tickets" />
+
+    <input type="hidden" asp-for="@Model.Category" name="category" />
+    <input type="hidden" asp-for="@Model.EventCategoryId" name="eventCategoryId" />
+    <input type="hidden" asp-for="@Model.Place" name="place" />
+    <input type="hidden" asp-for="@Model.EventPlaceId" name="eventPlaceId" />
+    <input type="hidden" asp-for="@Model.Description" name="description" />
     <input type="hidden" asp-for="@Model.Id" name="id" />
-    <input type="hidden" asp-for="@Model.Name" name="name" />
-    <input type="hidden" asp-for="@Model.PictureURL" name="pictureUrl" />
-    <input type="hidden" asp-for="@Model.Ticketprice" name="price" />
+    <input type="hidden" asp-for="@Model.Name" name="name" /> @*need*@
+    @*TODO: this may need to be pictureUrl*@
+    <input type="hidden" asp-for="@Model.PictureURL" name="pictureURL" />
+    <input type="hidden" asp-for="@Model.TicketPrice" name="ticketPrice" /> @*need*@
 </form>

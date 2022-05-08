@@ -2,6 +2,18 @@
 {
     public static class ApiPaths
     {
+        public static class TicketOrder
+        {
+            public static string GetTicketOrder(string baseUri, string orderId)
+            {
+                return $"{baseUri}/{orderId}";
+            }
+
+            public static string AddNewTicketOrder(string baseUri)
+            {
+                return $"{baseUri}/createticketorder";
+            }
+        }
         public static class Events
         {
             public static string GetAllCategories(string baseUri)

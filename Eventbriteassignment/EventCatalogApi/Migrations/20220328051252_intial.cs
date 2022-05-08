@@ -42,9 +42,9 @@ namespace EventCatalogApi.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Desciprion = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
                     PictureURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Ticketprice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TicketPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     AgeLimit = table.Column<int>(type: "int", nullable: false),
                     EventPlaceId = table.Column<int>(type: "int", nullable: false),
                     EventCategoryId = table.Column<int>(type: "int", nullable: false)

@@ -1,13 +1,12 @@
 ﻿using EventCatalogApi.Domain;
 using Microsoft.EntityFrameworkCore;
-using System.Data;
 
 namespace EventCatalogApi.Data
 {
-    
+
     public class EventCatalogContext : DbContext
     {
-        public EventCatalogContext(DbContextOptions options):base(options)
+        public EventCatalogContext(DbContextOptions options) : base(options)
         {
 
         }
@@ -51,11 +50,14 @@ namespace EventCatalogApi.Data
                     .IsRequired()
                     .HasMaxLength(100);
 
-                e.Property(e => e.Desciprion)
+                e.Property(e => e.Description)
                     .HasMaxLength(300);
 
-                e.Property(e => e.Ticketprice)
+                e.Property(e => e.TicketPrice)
                     .IsRequired();
+
+                e.Property(e => e.TicketQuantity)
+                  .IsRequired();
 
                 // Assume event has one place but a place has many events.
                 // But there might be many to many relationship.
@@ -70,5 +72,5 @@ namespace EventCatalogApi.Data
         }
 
     }
-    
+
 }
