@@ -8,7 +8,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY . .
-RUN dotnet restore "TokenServiceAPI/TokenServiceAPI.csproj"
+RUN dotnet restore "TokenServiceAPI.csproj"
 
 
 RUN dotnet build "TokenServiceAPI.csproj" -c Release -o /app/build
