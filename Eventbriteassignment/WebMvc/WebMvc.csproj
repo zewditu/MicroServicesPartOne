@@ -6,10 +6,17 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>81d25576-b9c4-41e0-b4d3-aa4de2e880c8</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <LangVersion>preview</LangVersion>
 	
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Event\About - Copy.cshtml" />
+    <Content Remove="Views\Event\Contact.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.4" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />

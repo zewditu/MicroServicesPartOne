@@ -54,6 +54,7 @@ namespace TokenServiceAPI
                 options.ConfigureDbContext =
                 builder => builder.UseSqlServer(Configuration["ConnectionString"],
                     sqlOptions => sqlOptions.MigrationsAssembly(migrationsAssembly)));
+            IdentityModelEventSource.ShowPII = true;
 
         }
 

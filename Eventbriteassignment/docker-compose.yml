@@ -54,8 +54,11 @@ services:
        context: .\WebMvc
        dockerfile: Dockerfile
      environment:
+       ASPETCORE_ENVIRONMENT: Development
        EventCatalogUrl: http://eventcatalogapi
+       IdentityUrl: http://172.20.176.1:7800
        CallbackUrl: http://localhost:8000
+
      ports:
        - "8000:80"
      container_name: eventbrite
@@ -63,7 +66,7 @@ services:
        - frontend
      depends_on:
        - eventcatalogapi
-
+       - tokenserver
    tokenserver:
     build:
       context: .\TokenServiceAPI
@@ -71,7 +74,7 @@ services:
     image: events/tokenapi
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      MvcClient: http://localhost:7500
+      MvcClient: http://localhost:8000
       BasketApiClient: http://localhost:7510
       OrderApiClient: http://localhost:7520
     ports:
