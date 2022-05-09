@@ -30,27 +30,27 @@
     </environment>*@
 </head>
 <body>
-    <header class="navbar navbar-light navbar-static-top">
+    <nav class="navbar navbar-dark bg-dark navbar-static-top" style="background: gray;">
         <div class="container">
             <article class="row">
                 <section class="col-lg-7 col-md-6 col-xs-12">
-                    <a class="navbar-brand" routerLink="catalog">
-                        <a asp-area="" asp-controller="Catalog" asp-action="Index">
-                            <img src="~/images/Logo-4.png" />
+                    <a class="navbar-brand" routerLink="event">
+                        <a asp-area="" asp-controller="Event" asp-action="Index">
+                            <img src="https://startacus.net/uploads/image/Eventbrite-Logo.png" style="height:60px; width:auto;" />
                         </a>
                     </a>
                 </section>
             </article>
-            <div class="navbar-collapse collapse">
+           @* <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     
                     <li><a asp-area="" asp-controller="Event" asp-action="About">About</a></li>
                    
                 </ul>
                 
-            </div>
+            </div>*@
         </div>
-    </header>
+    </nav>
     <div class="container body-content">
         @RenderBody()
         <hr />

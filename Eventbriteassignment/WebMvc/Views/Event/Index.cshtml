@@ -49,11 +49,11 @@
 
 <section class="esh-catalog-filters">
     <div class="container">
-        <form asp-action="Index" asp-controller="Catalog" method="post">
-            <label class="esh-catalog-label" data-title="brand">
+        <form asp-action="Index" asp-controller="Event" method="post">
+            <label class="esh-catalog-label" data-title="category">
                 <select asp-for="@Model.CategoryFilter" asp-items="@Model.Categories" class="esh-catalog-filter"></select>
             </label>
-            <label class="esh-catalog-label" data-title="type">
+            <label class="esh-catalog-label" data-title="place">
                 <select asp-for="@Model.PlaceFilter" asp-items="@Model.Places" class="esh-catalog-filter"></select>
             </label>
             <input class="esh-catalog-send" type="image" src="~/images/arrow-right.svg" />
