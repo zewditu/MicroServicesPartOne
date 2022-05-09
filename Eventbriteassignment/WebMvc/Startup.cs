@@ -1,7 +1,4 @@
-﻿using WebMvc.Infrastructure;
-using WebMvc.Services;
-
-namespace WebMvc
+﻿namespace WebMvc
 {
     public class Startup
     {
@@ -35,8 +32,44 @@ namespace WebMvc
                  "/Ticket", "Ticket/Index");
             });
             services.AddAntiforgery();
+            /////
+            services.AddTransient<IIdentityService<ApplicationUser>, IdentityService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            var identityUrl = Configuration.GetValue<string>("IdentityUrl");
+            var callBackUrl = Configuration.GetValue<string>("CallBackUrl");
 
 
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            })
+            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
+            {
+                options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.Authority = identityUrl.ToString();
+                options.SignedOutRedirectUri = callBackUrl.ToString();
+                options.ClientId = "mvc";
+                options.ClientSecret = "secret";
+                options.RequireHttpsMetadata = false;
+                options.SaveTokens = true;
+                options.ResponseType = "code id_token";
+                options.GetClaimsFromUserInfoEndpoint = true;
+                options.Scope.Add("openid");
+                options.Scope.Add("profile");
+                options.Scope.Add("order");
+                options.Scope.Add("basket");
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+
+                    NameClaimType = "name",
+                    RoleClaimType = "role",
+                };
+            });
 
         }
 
