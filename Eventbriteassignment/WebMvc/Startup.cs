@@ -1,20 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using WebMvc.Infrastructure;
-using WebMvc.Models;
 using WebMvc.Services;
 
 namespace WebMvc
@@ -41,8 +28,18 @@ namespace WebMvc
             services.AddControllersWithViews();
             services.AddSingleton<IHttpClient, CustomHttpClient>();
             services.AddTransient<IEventCatalogService, EventCatalogService>();
+            services.AddTransient<ITicketOrderService, TicketOrderService>();
+
+            // services.AddTransient<IEventCatalogService, EventCatalogService>();
+
+            services.AddRazorPages(options =>
+            {
+                options.Conventions.AddPageRoute(
+                 "/Ticket", "Ticket/Index");
+            });
+            services.AddAntiforgery();
             /////
-            services.AddTransient<IIdentityService<ApplicationUser>, IdentityService>();
+            services.AddTransient<Services.IIdentityService<Models.ApplicationUser>, Services.IdentityService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             var identityUrl = Configuration.GetValue<string>("IdentityUrl");
@@ -95,10 +92,10 @@ namespace WebMvc
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-           // app.UseHttpsRedirection();
+
+            // app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-            app.UseAuthentication();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

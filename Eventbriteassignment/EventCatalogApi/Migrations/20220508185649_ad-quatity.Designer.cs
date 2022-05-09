@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventCatalogApi.Migrations
 {
     [DbContext(typeof(EventCatalogContext))]
-    [Migration("20220423042111_third")]
-    partial class third
+    [Migration("20220508185649_ad-quatity")]
+    partial class adquatity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,6 +54,9 @@ namespace EventCatalogApi.Migrations
 
                     b.Property<decimal>("TicketPrice")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("TicketQuantity")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

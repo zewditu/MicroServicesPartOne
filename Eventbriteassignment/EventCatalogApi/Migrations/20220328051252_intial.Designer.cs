@@ -34,7 +34,7 @@ namespace EventCatalogApi.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Desciprion")
+                    b.Property<string>("Description")
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
@@ -52,7 +52,7 @@ namespace EventCatalogApi.Migrations
                     b.Property<string>("PictureURL")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Ticketprice")
+                    b.Property<decimal>("TicketPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
