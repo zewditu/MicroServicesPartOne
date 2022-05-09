@@ -1,4 +1,10 @@
-﻿namespace WebMvc
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.IdentityModel.Tokens;
+using WebMvc.Infrastructure;
+using WebMvc.Services;
+
+namespace WebMvc
 {
     public class Startup
     {
@@ -33,7 +39,7 @@
             });
             services.AddAntiforgery();
             /////
-            services.AddTransient<IIdentityService<ApplicationUser>, IdentityService>();
+            services.AddTransient<Services.IIdentityService<Models.ApplicationUser>, Services.IdentityService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             var identityUrl = Configuration.GetValue<string>("IdentityUrl");
