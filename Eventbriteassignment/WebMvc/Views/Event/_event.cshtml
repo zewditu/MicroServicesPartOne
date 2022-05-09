@@ -4,7 +4,7 @@
     <img class="esh-catalog-thumbnail" src="@Model.PictureURL" />
     <a asp-action="Index" asp-controller="TicketOrder" class="btn btn-primary">Buy tickets</a>
     </div>*@
-<form asp-controller="TicketOrder" asp-action="Create" method="post">
+<form asp-controller="TicketOrder" asp-action="Create" >
      <img class="esh-catalog-thumbnail" src="@Model.PictureURL" />
     <div class="esh-catalog-name">
         <span>@Model.Name</span>

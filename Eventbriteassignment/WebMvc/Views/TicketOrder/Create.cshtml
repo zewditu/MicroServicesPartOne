@@ -10,16 +10,16 @@
 
 <div class="container">
     <h1>Complete your ticket purchase for @Model.EventName</h1>
-    <form method="post" asp-controller="TicketOrder" asp-action="Create" id="payment-form">
+    <form method="post" asp-controller="TicketOrder" asp-action="Complete" id="payment-form">
         <section class="esh-orders_new-section">
-            <div class="row">
+          @*  <div class="row">
                 @foreach (var error in ViewData.ModelState.Values.SelectMany(err => err.Errors))
                 {
                     <div class="alert alert-warning" role="alert">
                         &nbsp;@error.ErrorMessage
                     </div>
                 }
-            </div>
+            </div>*@
             <h4 class="esh-orders_new-title">Shipping address</h4>
             <div class="row">
                 <div class="col-md-6">
