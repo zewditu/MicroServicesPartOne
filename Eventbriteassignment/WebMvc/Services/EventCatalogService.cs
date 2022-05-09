@@ -6,7 +6,7 @@ using WebMvc.Models;
 
 namespace WebMvc.Services
 {
-    public class EventCatalogService:IEventCatalogService
+    public class EventCatalogService : IEventCatalogService
     {
         private readonly string _baseUrl;
         private readonly IHttpClient _client;
@@ -17,7 +17,7 @@ namespace WebMvc.Services
         }
         public async Task<IEnumerable<SelectListItem>> GetCategoriesAsync()
         {
-           var categoryUri = ApiPaths.Events.GetAllCategories(_baseUrl);
+            var categoryUri = ApiPaths.Events.GetAllCategories(_baseUrl);
             var dataString = await _client.GetAsync(categoryUri);
 
             var items = new List<SelectListItem>()
@@ -36,7 +36,7 @@ namespace WebMvc.Services
                 items.Add(new SelectListItem
                 {
                     Value = category.Value<string>("id"),
-                    Text = category.Value<string>("catalogname"),
+                    Text = category.Value<string>("name"),
                 });
             }
             return items;
