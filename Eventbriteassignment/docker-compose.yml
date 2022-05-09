@@ -105,7 +105,7 @@ services:
      environment:
        TicketOrderUrl: http://ticketorderapi
        EventCatalogUrl: http://eventcatalogapi
-       IdentityUrl: http://172.20.176.1:7800
+       IdentityUrl: http://172.18.80.1:7800
        CallbackUrl: http://localhost:8000
        StripePublicKey: pk_test_PZScD6MMQk4mR7MEx65yXuxQ00n6AeQWBi
        StripePrivateKey: sk_test_J8H9AKCSKT3IyaRTFgLpL6X200LU34kY3l
