@@ -31,16 +31,12 @@
 </head>
 <body>
     <nav class="navbar navbar-dark bg-dark navbar-static-top" style="background: gray;">
-        <div class="container">
-            <article class="row">
-                <section class="col-lg-7 col-md-6 col-xs-12">
-                    <a class="navbar-brand" routerLink="event">
+                  
                         <a asp-area="" asp-controller="Event" asp-action="Index">
                             <img src="https://startacus.net/uploads/image/Eventbrite-Logo.png" style="height:60px; width:auto;" />
                         </a>
-                    </a>
-                </section>
-            </article>
+                    
+          
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     
@@ -49,7 +45,6 @@
                 </ul>
                 
             </div>
-        </div>
     </nav>
     <div class="container body-content">
         @RenderBody()
