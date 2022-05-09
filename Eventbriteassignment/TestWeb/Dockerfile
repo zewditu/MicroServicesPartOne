@@ -7,16 +7,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
+COPY ["TestWeb/TestWeb.csproj", "TestWeb/"]
+RUN dotnet restore "TestWeb/TestWeb.csproj"
 COPY . .
-RUN dotnet restore "TokenServiceAPI.csproj"
-
-
-RUN dotnet build "TokenServiceAPI.csproj" -c Release -o /app/build
+WORKDIR "/src/TestWeb"
+RUN dotnet build "TestWeb.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "TokenServiceAPI.csproj" -c Release -o /app/publish
+RUN dotnet publish "TestWeb.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "TokenServiceAPI.dll"]
+ENTRYPOINT ["dotnet", "TestWeb.dll"]
