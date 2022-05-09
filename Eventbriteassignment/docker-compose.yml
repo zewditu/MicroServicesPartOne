@@ -57,7 +57,7 @@ services:
      environment:
        ASPETCORE_ENVIRONMENT: Development
        EventCatalogUrl: http://eventcatalogapi
-       IdentityUrl: http://172.20.176.1:7800
+       IdentityUrl: http://172.18.80.1:7800
        CallbackUrl: http://localhost:8000
 
      ports:
