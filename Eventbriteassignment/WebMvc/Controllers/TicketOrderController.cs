@@ -28,36 +28,11 @@ namespace WebMvc.Controllers
         }
 
 
-        //public IActionResult Create(EventCatalogItem? fromEvent)
-        //{
-        //    //var user = _identitySvc.Get(HttpContext.User);
-        //    ViewBag.StripePublishableKey = _config["StripePublicKey"];
-        //    var order = new TicketOrder
-        //    {
-        //        OrderDate = DateTime.Now,
-        //        OrderId = new Random().Next(),
-        //        OrderStatus = OrderStatus.Preparing,
-        //        OrderTotal = 20,
-        //        FirstName = "",
-        //        LastName = "",
-        //        Address = "",
-        //        BuyerId = "llddds",
-        //        PaymentAuthCode = "80ljl090",
-        //        TicketPrice = 20,
-        //        EventName = "sdfsf",
-        //        Quantity = 1,
-        //        //TicketPrice = fromEvent.TicketPrice,
-        //        //EventName = fromEvent.Name,
-        //        //Quantity = fromEvent.TicketQuantity,
-        //    };
-        //    return View(order);
-        //    //return RedirectToAction("Create", "TicketOrder");
-        //}
-
         [HttpPost]
-        public async Task<IActionResult> Create(EventCatalogItem fromEvent)
+        public async Task<IActionResult> Create(TicketOrder fromEvent)
         {
             ViewBag.StripePublishableKey = _config["StripePublicKey"];
+            //return RedirectToAction("Complete", new { id = fromEvent.OrderId, userName = "maddieijams@gmail.com" });
 
             var newOrder = new TicketOrder
             {
@@ -71,8 +46,8 @@ namespace WebMvc.Controllers
                 BuyerId = "llddds",
                 PaymentAuthCode = "80ljl090",
                 TicketPrice = fromEvent.TicketPrice,
-                EventName = fromEvent.Name,
-                Quantity = fromEvent.TicketQuantity,
+                EventName = fromEvent.EventName,
+                Quantity = fromEvent.Quantity,
 
             };
             //return View(newOrder);
